@@ -43,19 +43,19 @@ public class ServiceAreaCalculatorDefinition extends GeoEventProcessorDefinition
 	{
 		try
 		{
-			propertyDefinitions.put("inputGeometryField", new PropertyDefinition("inputGeometryField", PropertyType.GeoEventField_Geometry, "GEOMETRY", "${com.esri.geoevent.processor.serviceareacalculator-processor.INPUTGEOMETRYFIELD_LABEL}", "${com.esri.geoevent.processor.serviceareacalculator-processor.INPUTGEOMETRYFIELD_DESC}", true, false));
-			propertyDefinitions.put("replaceGeometry", new PropertyDefinition("replaceGeometry", PropertyType.Boolean, "true", "${com.esri.geoevent.processor.serviceareacalculator-processor.REPLACEGEOMETRY_LABEL}", "${com.esri.geoevent.processor.serviceareacalculator-processor.REPLACEGEOMETRY_DESC}", true, false));
-			propertyDefinitions.put("outputGeometryField", new PropertyDefinition("outputGeometryField", PropertyType.String, "", "${com.esri.geoevent.processor.serviceareacalculator-processor.OUTPUTGEOMETRYFIELD_LABEL}", "${com.esri.geoevent.processor.serviceareacalculator-processor.OUTPUTGEOMETRYFIELD_DESC}", "replaceGeometry=false", false, false));
-			propertyDefinitions.put("outputGEDName", new PropertyDefinition("outputGEDName", PropertyType.String, "", "${com.esri.geoevent.processor.serviceareacalculator-processor.OUTPUTGEDNAME_LABEL}", "${com.esri.geoevent.processor.serviceareacalculator-processor.OUTPUTGEDNAME_DESC}", "replaceGeometry=false", false, false));
-			propertyDefinitions.put(NA_CONNECTION_PROPERTY, new PropertyDefinition(NA_CONNECTION_PROPERTY, PropertyType.ArcGISConnection, "", "${com.esri.geoevent.processor.serviceareacalculator-processor.AGS_CONNECTION_NAME_LABEL}", "${com.esri.geoevent.processor.serviceareacalculator-processor.AGS_CONNECTION_NAME_DESC}", true, false));
+			propertyDefinitions.put("inputGeometryField", new PropertyDefinition("inputGeometryField", PropertyType.GeoEventField_Geometry, "GEOMETRY", "${com.esri.geoevent.processor.service-area-calculator-processor.INPUTGEOMETRYFIELD_LABEL}", "${com.esri.geoevent.processor.service-area-calculator-processor.INPUTGEOMETRYFIELD_DESC}", true, false));
+			propertyDefinitions.put("replaceGeometry", new PropertyDefinition("replaceGeometry", PropertyType.Boolean, "true", "${com.esri.geoevent.processor.service-area-calculator-processor.REPLACEGEOMETRY_LABEL}", "${com.esri.geoevent.processor.service-area-calculator-processor.REPLACEGEOMETRY_DESC}", true, false));
+			propertyDefinitions.put("outputGeometryField", new PropertyDefinition("outputGeometryField", PropertyType.String, "", "${com.esri.geoevent.processor.service-area-calculator-processor.OUTPUTGEOMETRYFIELD_LABEL}", "${com.esri.geoevent.processor.service-area-calculator-processor.OUTPUTGEOMETRYFIELD_DESC}", "replaceGeometry=false", false, false));
+			propertyDefinitions.put("outputGEDName", new PropertyDefinition("outputGEDName", PropertyType.String, "", "${com.esri.geoevent.processor.service-area-calculator-processor.OUTPUTGEDNAME_LABEL}", "${com.esri.geoevent.processor.service-area-calculator-processor.OUTPUTGEDNAME_DESC}", "replaceGeometry=false", false, false));
+			propertyDefinitions.put(NA_CONNECTION_PROPERTY, new PropertyDefinition(NA_CONNECTION_PROPERTY, PropertyType.ArcGISConnection, "", "${com.esri.geoevent.processor.service-area-calculator-processor.AGS_CONNECTION_NAME_LABEL}", "${com.esri.geoevent.processor.service-area-calculator-processor.AGS_CONNECTION_NAME_DESC}", true, false));
 
-			propertyDefinitions.put(NA_PATH_PROPERTY, new PropertyDefinition(NA_PATH_PROPERTY, PropertyType.String, "rest/services/Network/USA/NAServer/Service%20Area/solveServiceArea", "${com.esri.geoevent.processor.serviceareacalculator-processor.NA_SOLVER_PATH_LABEL}", "${com.esri.geoevent.processor.serviceareacalculator-processor.NA_SOLVER_PATH_DESC}", false, false));
-			propertyDefinitions.put(DRIVE_TIME_PROPERTY, new PropertyDefinition(DRIVE_TIME_PROPERTY, PropertyType.Integer, 2, "${com.esri.geoevent.processor.serviceareacalculator-processor.DRIVE_TIME_LABEL}", "${com.esri.geoevent.processor.serviceareacalculator-processor.DRIVE_TIME_DESC}", false, false));
+			propertyDefinitions.put(NA_PATH_PROPERTY, new PropertyDefinition(NA_PATH_PROPERTY, PropertyType.String, "rest/services/Network/USA/NAServer/Service%20Area/solveServiceArea", "${com.esri.geoevent.processor.service-area-calculator-processor.NA_SOLVER_PATH_LABEL}", "${com.esri.geoevent.processor.service-area-calculator-processor.NA_SOLVER_PATH_DESC}", false, false));
+			propertyDefinitions.put(DRIVE_TIME_PROPERTY, new PropertyDefinition(DRIVE_TIME_PROPERTY, PropertyType.Integer, 2, "${com.esri.geoevent.processor.service-area-calculator-processor.DRIVE_TIME_LABEL}", "${com.esri.geoevent.processor.service-area-calculator-processor.DRIVE_TIME_DESC}", false, false));
 
 			List<LabeledValue> outputPolygonType = new ArrayList<LabeledValue>(2);
-			outputPolygonType.add(new LabeledValue("${com.esri.geoevent.processor.serviceareacalculator-processor.POLYGON_TYPE_DETAILED_LBL}", "esriNAOutputPolygonDetailed"));
-			outputPolygonType.add(new LabeledValue("${com.esri.geoevent.processor.serviceareacalculator-processor.POLYGON_TYPE_SIMPLIFIED_LBL}", "esriNAOutputPolygonSimplified"));
-			propertyDefinitions.put(OUTPUT_POLYGON_TYPE_PROPERTY, new PropertyDefinition(OUTPUT_POLYGON_TYPE_PROPERTY, PropertyType.String, "esriNAOutputPolygonSimplified", "${com.esri.geoevent.processor.serviceareacalculator-processor.OUTPUT_POLYGON_TYPE_LABEL}", "${com.esri.geoevent.processor.serviceareacalculator-processor.OUTPUT_POLYGON_TYPE_DESC}", false, false, outputPolygonType));
+			outputPolygonType.add(new LabeledValue("${com.esri.geoevent.processor.service-area-calculator-processor.POLYGON_TYPE_DETAILED_LBL}", "esriNAOutputPolygonDetailed"));
+			outputPolygonType.add(new LabeledValue("${com.esri.geoevent.processor.service-area-calculator-processor.POLYGON_TYPE_SIMPLIFIED_LBL}", "esriNAOutputPolygonSimplified"));
+			propertyDefinitions.put(OUTPUT_POLYGON_TYPE_PROPERTY, new PropertyDefinition(OUTPUT_POLYGON_TYPE_PROPERTY, PropertyType.String, "esriNAOutputPolygonSimplified", "${com.esri.geoevent.processor.service-area-calculator-processor.OUTPUT_POLYGON_TYPE_LABEL}", "${com.esri.geoevent.processor.service-area-calculator-processor.OUTPUT_POLYGON_TYPE_DESC}", false, false, outputPolygonType));
 
 		}
 		catch (Exception e)
@@ -79,13 +79,13 @@ public class ServiceAreaCalculatorDefinition extends GeoEventProcessorDefinition
 	@Override
 	public String getLabel()
 	{
-		return "${com.esri.geoevent.processor.serviceareacalculator-processor.PROCESSOR_LBL}";
+		return "${com.esri.geoevent.processor.service-area-calculator-processor.PROCESSOR_LBL}";
 	}
 
 	@Override
 	public String getDescription()
 	{
-		return "${com.esri.geoevent.processor.serviceareacalculator-processor.PROCESSOR_DESC}";
+		return "${com.esri.geoevent.processor.service-area-calculator-processor.PROCESSOR_DESC}";
 	}
 
 	@Override
