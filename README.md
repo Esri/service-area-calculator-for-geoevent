@@ -1,6 +1,6 @@
 # service-area-calculator-for-geoevent
 
-ArcGIS 10.3.x GeoEvent Extension for Server sample processor for calculating service area using drive time and Network Analyst service.
+ArcGIS 10.4 GeoEvent Extension for Server sample processor for calculating service area using drive time and Network Analyst service.
 
 ![App](service-area-calculator-for-geoevent.png?raw=true)
 

@@ -53,7 +53,7 @@ import com.esri.ges.core.http.GeoEventHttpClient;
 import com.esri.ges.core.http.GeoEventHttpClientService;
 import com.esri.ges.core.http.KeyValue;
 import com.esri.ges.core.validation.ValidationException;
-import com.esri.ges.datastore.agsconnection.ArcGISServerConnection;
+import com.esri.ges.manager.datastore.agsconnection.ArcGISServerConnection;
 import com.esri.ges.framework.i18n.BundleLogger;
 import com.esri.ges.framework.i18n.BundleLoggerFactory;
 import com.esri.ges.manager.datastore.agsconnection.ArcGISServerConnectionManager;
