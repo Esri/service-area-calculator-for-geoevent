@@ -269,12 +269,23 @@ public class ServiceAreaCalculator extends GeoEventProcessorBase
 		return geomout;
 	}
 
+	//Handle the incompatibility with 10.5.0 Patch 1 release
+	public Collection<KeyValue> getDefaultParamsForRequest(ArcGISServerConnection agsConnection)
+  {
+	  Collection<KeyValue> params = new ArrayList<KeyValue>();
+    params.add(new KeyValue("f", "json"));
+    String token = agsConnection.getDecryptedToken();
+    if (token != null)
+      params.add(new KeyValue("token", token));
+
+    return params;
+  } 
+	
 	public MapGeometry getAreaAroundPoint(MapGeometry point)
 	{
 		ArcGISServerConnection agsConnection = agsConnectionManager.getArcGISServerConnection(naConnectionName);
 
 		Collection<KeyValue> params = new ArrayList<KeyValue>();
-		params.addAll(agsConnection.getDefaultParamsForRequest());
 		params.add(new KeyValue("facilities", generateFacilitiesJson(point)));
 		params.add(new KeyValue("defaultBreaks", (new Integer(driveTime)).toString()));
 		params.add(new KeyValue("travelDirection", "esriNATravelDirectionFromFacility"));
