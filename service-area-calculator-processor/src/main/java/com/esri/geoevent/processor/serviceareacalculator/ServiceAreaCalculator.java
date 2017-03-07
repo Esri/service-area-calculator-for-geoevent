@@ -25,6 +25,8 @@
 package com.esri.geoevent.processor.serviceareacalculator;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +36,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.http.HttpHeaders;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.message.BasicNameValuePair;
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParser;
@@ -281,12 +288,42 @@ public class ServiceAreaCalculator extends GeoEventProcessorBase
 	  return params;
 	} 
 	
+	public HttpPost createPostRequest(URL url, Collection<KeyValue> parameters) throws IOException
+  {
+    List<NameValuePair> formParams = new ArrayList<NameValuePair>();
+    if (parameters != null)
+    {
+      for (KeyValue parameter : parameters)
+      {
+        formParams.add(new BasicNameValuePair(parameter.getKey(), parameter.getValue()));
+        LOGGER.debug("HTTP_ADDING_PARAM", parameter.getKey(), parameter.getValue());
+      }
+    }
+    UrlEncodedFormEntity entity = new UrlEncodedFormEntity(formParams, "UTF-8");
+
+    HttpPost httpPost;
+    try
+    {
+      httpPost = new HttpPost(url.toURI());
+    }
+    catch (URISyntaxException e)
+    {
+      throw new RuntimeException(e);
+    }
+    httpPost.setEntity(entity);
+    httpPost.setHeader(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded");
+    httpPost.setHeader("charset", "utf-8");
+
+    return httpPost;
+  }
+
 	public MapGeometry getAreaAroundPoint(MapGeometry point)
 	{
 		ArcGISServerConnection agsConnection = agsConnectionManager.getArcGISServerConnection(naConnectionName);
 
 		Collection<KeyValue> params = new ArrayList<KeyValue>();
 		params.addAll(getDefaultParamsForRequest(agsConnection));
+    //params.addAll(agsConnection.getDefaultParamsForRequest());
 		params.add(new KeyValue("facilities", generateFacilitiesJson(point)));
 		params.add(new KeyValue("defaultBreaks", (new Integer(driveTime)).toString()));
 		params.add(new KeyValue("travelDirection", "esriNATravelDirectionFromFacility"));
@@ -301,9 +338,15 @@ public class ServiceAreaCalculator extends GeoEventProcessorBase
 			urlString.append(serviceAreaSolverPath);
 
 			URL url = new URL(urlString.toString());
-			HttpPost postRequest = http.createPostRequest(url, params);
+			//HttpPost postRequest = http.createPostRequest(url, params);
+      HttpPost postRequest = createPostRequest(url, params);
 			postRequest.addHeader("Referer", agsConnection.getReferer());
 			String responseString = http.executeAndReturnBody(postRequest, GeoEventHttpClient.DEFAULT_TIMEOUT);
+			/*
+			HttpGet getRequest = http.createGetRequest(url, params);
+			getRequest.addHeader("Referer", agsConnection.getReferer());
+      String responseString = http.executeAndReturnBody(getRequest, GeoEventHttpClient.DEFAULT_TIMEOUT);
+			*/
 			return parseAreaSolverReply(responseString);
 		}
 		catch (Exception e)
