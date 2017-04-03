@@ -1,6 +1,6 @@
 # service-area-calculator-for-geoevent
 
-ArcGIS 10.4 GeoEvent Extension for Server sample processor for calculating service area using drive time and Network Analyst service.
+ArcGIS GeoEvent Server sample processor for calculating service area using drive time and Network Analyst service.
 
 ![App](service-area-calculator-for-geoevent.png?raw=true)
 
@@ -11,24 +11,24 @@ ArcGIS 10.4 GeoEvent Extension for Server sample processor for calculating servi
 
 Building the source code:
 
-1. Make sure Maven and ArcGIS GeoEvent Extension SDK are installed on your machine.
+1. Make sure Maven and ArcGIS GeoEvent Server SDK are installed on your machine.
 2. Run 'mvn install -Dcontact.address=[YourContactEmailAddress]'
 
 Installing the built jar files:
 
-1. Copy the *.jar files under the 'target' sub-folder(s) into the [ArcGIS-GeoEvent-Extension-Install-Directory]/deploy folder.
+1. Copy the *.jar files under the 'target' sub-folder(s) into the [ArcGIS-GeoEvent-Server-Install-Directory]/deploy folder.
 
 ## Requirements
 
-* ArcGIS GeoEvent Extension for Server.
-* ArcGIS GeoEvent Extension SDK.
+* ArcGIS GeoEvent Server.
+* ArcGIS GeoEvent Server SDK.
 * Java JDK 1.7 or greater.
 * Maven.
 
 ## Resources
 
-* [ArcGIS GeoEvent Extension Gallery](http://links.esri.com/geoevent-gallery)
-* [ArcGIS GeoEvent Extension for Server Resources](http://links.esri.com/geoevent)
+* [ArcGIS GeoEvent Gallery](http://links.esri.com/geoevent-gallery)
+* [ArcGIS GeoEvent Server Resources](http://links.esri.com/geoevent)
 * [ArcGIS Blog](http://blogs.esri.com/esri/arcgis/)
 * [twitter@esri](http://twitter.com/esri)
 
@@ -58,5 +58,5 @@ limitations under the License.
 A copy of the license is available in the repository's [license.txt](license.txt?raw=true) file.
 
 [](ArcGIS, GeoEvent, Extension, Processor)
-[](Esri Tags: ArcGIS GeoEvent Processor for Server)
+[](Esri Tags: ArcGIS GeoEvent Server)
 [](Esri Language: Java)
