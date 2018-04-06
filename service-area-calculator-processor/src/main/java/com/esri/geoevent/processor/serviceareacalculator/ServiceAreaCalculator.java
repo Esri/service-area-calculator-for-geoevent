@@ -42,11 +42,11 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
-import org.codehaus.jackson.JsonFactory;
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 import com.esri.core.geometry.MapGeometry;
 import com.esri.ges.core.component.ComponentException;
@@ -397,7 +397,7 @@ public class ServiceAreaCalculator extends GeoEventProcessorBase
 			return null;
 		}
 
-		int wkid = getNodeFollowingPath(jsonNode, wkidPath).getIntValue();
+		int wkid = getNodeFollowingPath(jsonNode, wkidPath).asInt();
 		String wkidStr = Integer.toString(wkid);
 		String geometryString;
 		List<MapGeometry> retList = new ArrayList<MapGeometry>();
